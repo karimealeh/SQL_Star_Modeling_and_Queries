@@ -7,7 +7,7 @@ to our Dim and Fact Tables.
 
 
 ## Star Schema ERD Diagram
-<img src="imgs/ERD_Diagram_Star_Schema.png"></img>
+<img src="imgs/ERD_Diagram_Star_Schema.PNG"></img>
 
 ## Logs from our application after it was ran:
 <img src="imgs/logs_app_success.jpg"></img>
