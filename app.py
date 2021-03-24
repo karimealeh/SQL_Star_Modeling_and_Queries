@@ -21,36 +21,22 @@ for item in create_tables_list:
     print(f"table {table_names[counter]} was created")
     counter = counter + 1
 
-
-# read denormalized data from csv, put it into a pandas dataframe,
+    
+    
+# read denormalized data from csv, put it into a pandas dataframe, and send to the sqlite database
 datapath = os.path.join('inputdata','liquorsalesdenormalized.csv')
 mycsvdata = pd.read_csv(datapath) 
 print("sending our data from the pandas dataframe (csv) to our sqlitedb")
+# send data to sqlite from the mycsvdata dataframe
 mycsvdata.to_sql('liquorsalesdenormalized', if_exists = 'replace', con = engine)
 print("data was correctly sent to our new table")
 
 
-# do queries to insert in sqlite
-insert_dim_store = """
-insert into Dim_Store (store_number, store_name, address, city, zip_code, store_location, county_number, county)
-select distinct 
-cast(store_number as INT) as store_number,
-max(store_name) as store_name,
-max(address) as address,
-max(city) as city,
-00000 as zip_code,
-max(store_location) as store_location,
-00000 as county_number,
-max(county) as county
-from liquorsalesdenormalized
-group by cast(store_number as INT);
-"""
 
-
-list_inserts = [Dim_Store_Insert_Data, Dim_Vendor_Insert_Data, Dim_Item_Insert_Data, Fact_Sales_Insert_Data, Dim_Category_Insert_Data]
-list_deletes = [Delete_Store_Data, Delete_Vendor_Data, Delete_Item_Data, Delete_FactSales_Data, Delete_Category_Data]
 
 # Inserting data into our Dimension and Fact Tables
+list_inserts = [Dim_Store_Insert_Data, Dim_Vendor_Insert_Data, Dim_Item_Insert_Data, Fact_Sales_Insert_Data, Dim_Category_Insert_Data]
+list_deletes = [Delete_Store_Data, Delete_Vendor_Data, Delete_Item_Data, Delete_FactSales_Data, Delete_Category_Data]
 new_counter = 0
 for insert in list_inserts:
     print(f"inserting data into table {new_counter + 1}")
