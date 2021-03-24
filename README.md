@@ -1,7 +1,7 @@
 # SQL AND PYTHON - Normalizing Data
-In this project we'll start with a CSV File that is just one denormalized table.
-We'll analyze the table, create an ERD Diagram based in the star schema, 
-create our queries in our sqlite database for our dimension and fact tables with sqlalchemy in python, 
+In this project we created a python application that process data while interacting with SQL, using the SQL Alchemy Library.
+We'll start with a CSV File that is just one denormalized table.
+We'll analyze the table, create an ERD Diagram based in the star schema, create our queries in our sqlite database for our dimension and fact tables with sqlalchemy in python, 
 and last we'll be inserting data from our csv (that was ingested as a new table in sqlite) 
 to our Dim and Fact Tables.
 
